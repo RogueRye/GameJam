@@ -25,7 +25,11 @@ public class GetInteractionTarget : MonoBehaviour
         if ( other.CompareTag( "Interaction" ) )
         {
             var newItem = other.GetComponent<Interactible>();
-            items.Add( newItem );
+            if ( !items.Contains( newItem ) )
+            {
+                items.Add( newItem );
+            }
+
             controller.SetLastKnownInteractible( newItem );
         }
     }

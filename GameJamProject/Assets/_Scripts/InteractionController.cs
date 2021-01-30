@@ -46,5 +46,6 @@ public class InteractionController : MonoBehaviour
     public void UnassignInteractible()
     {
         hasInteractible = false;
+        lastInteractible = null;
     }
 }
