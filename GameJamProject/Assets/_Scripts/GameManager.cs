@@ -20,6 +20,7 @@ public class GameManager : GameEventListener
         //First Stage is Fixed
         selectedStages[ 0 ] = allStages[ 0 ];
         currentIndex = 0;
+        player.transform.position = selectedStages[ currentIndex ].StartPos.position;
     }
 
     // Update is called once per frame
@@ -28,6 +29,7 @@ public class GameManager : GameEventListener
 
     }
 
+    //Stage beat
     public override void OnEventRaised( int args )
     {
         base.OnEventRaised( args );

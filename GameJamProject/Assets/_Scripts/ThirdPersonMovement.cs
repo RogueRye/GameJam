@@ -1,15 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent( typeof( CharacterController ) )]
 public class ThirdPersonMovement : MonoBehaviour
 {
     [SerializeField]
     private CharacterController controller;
     [SerializeField]
     private Transform cam;
-
+    [SerializeField]
+    private Animator animator;
     [SerializeField]
     private float speed = 6;
     [SerializeField]
@@ -24,6 +23,7 @@ public class ThirdPersonMovement : MonoBehaviour
     private bool lockRotation = false;
     private float gravityValue = -9.81f;
     private Vector3 playerVelocity;
+    private float speedMod = 1;
 
     // Update is called once per frame
     void Update()
@@ -39,7 +39,11 @@ public class ThirdPersonMovement : MonoBehaviour
 
         Vector3 dir = new Vector3( h , 0 , v ).normalized;
 
-        if(dir.magnitude >= 0.1f )
+
+        animator.SetFloat( "Forward" , dir.magnitude );
+
+
+        if ( dir.magnitude >= 0.1f )
         {
             float target = Mathf.Atan2( dir.x , dir.z ) * Mathf.Rad2Deg + cam.eulerAngles.y;
 
@@ -49,13 +53,25 @@ public class ThirdPersonMovement : MonoBehaviour
                 transform.rotation = Quaternion.Euler( 0 , angle , 0 );
             }
 
-            Vector3 moveDir = Quaternion.Euler( 0f , target , 0f ) * Vector3.forward;            
-            controller.Move( moveDir.normalized * speed * Time.deltaTime );
+            Vector3 moveDir = Quaternion.Euler( 0f , target , 0f ) * Vector3.forward;
+
+            if ( lockRotation )
+            {
+                var velocityDir = (Quaternion.Euler( 0f , target , 0f ) * transform.forward).normalized;
+
+                if ( Mathf.Abs( moveDir.z ) > 0 )
+                    animator.SetFloat( "Forward" , velocityDir.z );
+                else
+                    animator.SetFloat( "Forward" , velocityDir.x );
+            }
+
+            controller.Move( moveDir.normalized * speed * speedMod * Time.deltaTime );
         }
 
-        if ( Input.GetButtonDown( "Jump" ) && (groundedPlayer || Mathf.Abs(playerVelocity.y) < 0.2f ))
+        if ( Input.GetButtonDown( "Jump" ) && ( groundedPlayer || Mathf.Abs( playerVelocity.y ) < 0.2f ) )
         {
             playerVelocity.y += Mathf.Sqrt( jumpForce * -3.0f * gravityValue );
+            animator.SetTrigger( "Jump" );
         }
 
         playerVelocity.y += gravityValue * mass * Time.deltaTime;
@@ -67,6 +83,10 @@ public class ThirdPersonMovement : MonoBehaviour
     public void ToggleRotationLock()
     {
         lockRotation = !lockRotation;
+
+        speedMod = lockRotation ? 0.35f : 1f;
+
+        animator.SetBool( "Push" , lockRotation );
     }
 
 }
