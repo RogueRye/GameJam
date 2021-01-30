@@ -8,6 +8,17 @@ public class GetInteractionTarget : MonoBehaviour
     private InteractionController controller;
 
     List<Interactible> items = new List<Interactible>();
+    private Collider col;
+
+    private void Start()
+    {
+        col = GetComponent<Collider>();
+    }
+
+    private void Update()
+    {
+        col.enabled = !controller.HoldingItem; 
+    }
 
     private void OnTriggerEnter( Collider other )
     {

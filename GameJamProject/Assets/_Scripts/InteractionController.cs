@@ -4,13 +4,18 @@
 public class InteractionController : MonoBehaviour
 {
     [SerializeField]
-    private KeyCode interactKey = KeyCode.F;
+    private KeyCodeVariable interactKey;
     [SerializeField]
     private GameObject anchor;
 
     private ThirdPersonMovement movement;
     private Interactible lastInteractible;
+
     private bool hasInteractible;
+
+    [HideInInspector]
+    public bool HoldingItem;
+
 
     private void Start()
     {
@@ -20,13 +25,14 @@ public class InteractionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(hasInteractible && Input.GetKeyDown( interactKey ) )
+        if(hasInteractible && Input.GetKeyDown( interactKey.KeyCode ) )
         {
             lastInteractible.Interact( anchor );
 
             if(lastInteractible is Movable )
             {
                 movement.ToggleRotationLock();
+                HoldingItem = !HoldingItem;
             }
         }
 
