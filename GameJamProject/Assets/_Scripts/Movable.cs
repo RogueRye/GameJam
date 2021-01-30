@@ -37,7 +37,7 @@ public class Movable : Interactible
         toolTipEvent.Raise( "" );
     }
 
-    public override void Reset()
+    public override void ResetItem()
     {
         transform.position = startPos;
     }

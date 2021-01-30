@@ -18,7 +18,7 @@ public class GameManager : GameEventListener
     void Start()
     {
         //First Stage is Fixed
-        //selectedStages[ 0 ] = allStages[ 0 ];
+        selectedStages[ 0 ] = allStages[ 0 ];
         currentIndex = 0;
     }
 

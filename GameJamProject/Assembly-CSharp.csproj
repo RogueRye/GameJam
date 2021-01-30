@@ -72,6 +72,7 @@
     <Compile Include="Assets\_Scripts\InteractionController.cs" />
     <Compile Include="Assets\_Scripts\Movable.cs" />
     <Compile Include="Assets\_Scripts\Stage.cs" />
+    <Compile Include="Assets\_Scripts\StageResetter.cs" />
     <Compile Include="Assets\_Scripts\ThirdPersonMovement.cs" />
     <Compile Include="Assets\_Scripts\ToolTipListener.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
