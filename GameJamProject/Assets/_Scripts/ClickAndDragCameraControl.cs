@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(CinemachineFreeLook))]
 public class ClickAndDragCameraControl : MonoBehaviour
 {
+    // Some comment
     CinemachineFreeLook cameraFreeLook;
     float xSpeed;
     float ySpeed;
