@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04b9769bc4cfe4d459f497de517125f9, type: 3}
-  m_Name: ResetStage
+  m_Script: {fileID: 11500000, guid: 9a2a6a264d6ab304089157a094f7828b, type: 3}
+  m_Name: StagesCleared
   m_EditorClassIdentifier: 
-  Name: Reset Level
+  Value: 0
