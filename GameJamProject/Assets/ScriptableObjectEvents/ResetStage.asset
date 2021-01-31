@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04b9769bc4cfe4d459f497de517125f9, type: 3}
   m_Name: ResetStage
   m_EditorClassIdentifier: 
+  Name: Reset Level

@@ -64,10 +64,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\SO_Scripts\GameEvent.cs" />
+    <Compile Include="Assets\SO_Scripts\IntVariable.cs" />
     <Compile Include="Assets\SO_Scripts\KeyCodeVariable.cs" />
+    <Compile Include="Assets\_Scripts\AnimationInteraction.cs" />
     <Compile Include="Assets\_Scripts\ClickAndDragCameraControl.cs" />
+    <Compile Include="Assets\_Scripts\EventInteractible.cs" />
     <Compile Include="Assets\_Scripts\GameManager.cs" />
     <Compile Include="Assets\_Scripts\GetInteractionTarget.cs" />
+    <Compile Include="Assets\_Scripts\GoalController.cs" />
     <Compile Include="Assets\_Scripts\Interactible.cs" />
     <Compile Include="Assets\_Scripts\InteractionController.cs" />
     <Compile Include="Assets\_Scripts\Movable.cs" />
@@ -75,6 +79,7 @@
     <Compile Include="Assets\_Scripts\StageResetter.cs" />
     <Compile Include="Assets\_Scripts\ThirdPersonMovement.cs" />
     <Compile Include="Assets\_Scripts\ToolTipListener.cs" />
+    <Compile Include="Assets\_Scripts\TransparencyController.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

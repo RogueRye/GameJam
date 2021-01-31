@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d75fa4fd2d1fca541ab2d39ee34cde69, type: 3}
-  m_Name: TurnRight
+  m_Script: {fileID: 11500000, guid: 9a2a6a264d6ab304089157a094f7828b, type: 3}
+  m_Name: StagesCleared
   m_EditorClassIdentifier: 
-  KeyCode: 101
+  Value: 0

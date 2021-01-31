@@ -3,8 +3,6 @@
 public class Movable : Interactible
 {
     [SerializeField]
-    private float dragSpeed = 3;
-    [SerializeField]
     private float turnSpeed = 30;
     [SerializeField]
     private KeyCodeVariable interactButton;
@@ -15,6 +13,9 @@ public class Movable : Interactible
 
     [SerializeField]
     private KeyCodeVariable rotateRight;
+
+    [SerializeField]
+    private bool sticky;
 
     private bool beingDragged;
     private Transform anchor;
@@ -60,11 +61,47 @@ public class Movable : Interactible
         }
     }
 
+    private void OnCollisionEnter( Collision collision )
+    {
+        if(collision.transform.TryGetComponent<Movable>(out var other ))
+        {
+            //Debug.Log( "collision" );
+            if ( sticky )
+            {
+                transform.parent = other.transform;
+                gameObject.tag = "Untagged";
+                
+            }
+        }
+    }
+
+    private void OnCollisionExit( Collision collision )
+    {
+        if ( collision.transform.TryGetComponent<Movable>( out var other ) )
+        {
+            if ( sticky )
+            {
+                transform.parent = originalParent;
+                gameObject.tag = "Interaction";
+            }
+        }
+    }
+
     private void OnTriggerEnter( Collider other )
     {
         if ( other.CompareTag( "Player" ) && !beingDragged)
         {
             toolTipEvent.Raise( $"Press {interactButton.KeyCode} to grab Press {interactButton.KeyCode} again to let go.\nPress {rotateLeft.KeyCode} / {rotateRight.KeyCode} to rotate." );
+        }
+        if ( other.transform.TryGetComponent<Movable>( out var collided ) )
+        {
+            //Debug.Log( "collision" );
+            if ( sticky )
+            {
+                transform.parent = other.transform;
+                gameObject.tag = "Untagged";
+
+            }
         }
     }
 
@@ -73,6 +110,17 @@ public class Movable : Interactible
         if ( other.CompareTag( "Player" ) )
         {
             toolTipEvent.Raise( "" );
+        }
+
+        if ( other.transform.TryGetComponent<Movable>( out var collided ) )
+        {
+            //Debug.Log( "collision" );
+            if ( sticky )
+            {
+                transform.parent = other.transform;
+                gameObject.tag = "Interaction";
+
+            }
         }
     }
 

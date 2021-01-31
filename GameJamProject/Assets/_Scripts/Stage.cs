@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Stage : GameEventListener
+public class Stage : MonoBehaviour
 {
     public Transform StartPos;
 
@@ -16,7 +16,7 @@ public class Stage : GameEventListener
     // Start is called before the first frame update
     void Start()
     {
-        interactibles = GetComponentsInChildren<Interactible>();
+        interactibles = GetComponentsInChildren<Interactible>(true);
     }
 
     // Update is called once per frame

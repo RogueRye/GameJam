@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class GameEvent : ScriptableObject
 {
+    public string Name;
     private List<GameEventListener> listeners = new List<GameEventListener>();
 
     public void Raise()
@@ -36,7 +37,14 @@ public class GameEventListener : MonoBehaviour
 
     protected void OnEnable()
     {
-        MyEvent.RegisterListener( this );
+        try
+        {
+            MyEvent.RegisterListener( this );
+        }
+        catch
+        {
+            Debug.Log( gameObject.name + "missing event" );
+        }
     }
 
     protected void OnDisable()
