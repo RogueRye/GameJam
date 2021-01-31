@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameEvent : ScriptableObject
 {
     public string Name;
+    public int Id;
     private List<GameEventListener> listeners = new List<GameEventListener>();
 
     public void Raise()
@@ -35,7 +36,7 @@ public class GameEventListener : MonoBehaviour
 {
     public GameEvent MyEvent;
 
-    protected void OnEnable()
+    protected virtual void OnEnable()
     {
         try
         {
@@ -47,7 +48,7 @@ public class GameEventListener : MonoBehaviour
         }
     }
 
-    protected void OnDisable()
+    protected virtual void OnDisable()
     {
         MyEvent.UnregisterListener( this );
     }
