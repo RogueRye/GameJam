@@ -48,3 +48,6 @@ Corridor/Library/ShaderCache/
 Corridor/Library/metadata/
 GameJamProject/Assembly-CSharp.csproj
 GameJamProject/GameJamProject.sln
+GameJamProject/Packages/packages-lock.json
+GameJamProject/GameJamProject.sln
+GameJamProject/Assembly-CSharp.csproj
