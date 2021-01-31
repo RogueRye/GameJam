@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04b9769bc4cfe4d459f497de517125f9, type: 3}
   m_Name: DeathEvent
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Death
+  Id: 42

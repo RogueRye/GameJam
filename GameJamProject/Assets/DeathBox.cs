@@ -7,9 +7,7 @@ public class DeathBox : MonoBehaviour
 
     private void OnTriggerEnter( Collider other )
     {
-        if ( other.CompareTag( "Player" ) )
-        {
-            deathEvent.Raise(deathEvent.Id);
-        }
+        deathEvent.Raise( deathEvent.Id );
     }
+
 }

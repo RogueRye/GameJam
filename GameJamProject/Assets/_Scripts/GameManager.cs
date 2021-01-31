@@ -57,7 +57,10 @@ public class GameManager : GameEventListener
 
     private void PrepStage()
     {
+        player.GetComponent<CharacterController>().enabled = false;
         player.transform.position = selectedStages[ currentIndex ].StartPos.position;
+        player.GetComponent<CharacterController>().enabled = true;
+
         var prizeGo = Instantiate( stagePrizesPrefabs[ currentIndex ] , selectedStages[ currentIndex ].GoalPos );
         prizeGo.transform.localPosition = Vector3.zero;
     }
@@ -84,7 +87,9 @@ public class GameManager : GameEventListener
     {
         if(args == deathEvent.Id )
         {
+            player.GetComponent<CharacterController>().enabled = false;
             player.transform.position = selectedStages[ currentIndex ].StartPos.position;
+            player.GetComponent<CharacterController>().enabled = true;
             resetEvent.Raise();
         }
     }
