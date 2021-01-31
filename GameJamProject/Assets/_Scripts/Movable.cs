@@ -34,8 +34,8 @@ public class Movable : Interactible
         {
             transform.parent = originalParent;
         }
-
-        toolTipEvent.Raise( "" );
+        if ( toolTipEvent != null )
+            toolTipEvent.Raise( "" );
     }
 
     public override void ResetItem()
@@ -91,7 +91,8 @@ public class Movable : Interactible
     {
         if ( other.CompareTag( "Player" ) && !beingDragged)
         {
-            toolTipEvent.Raise( $"Press {interactButton.KeyCode} to grab Press {interactButton.KeyCode} again to let go.\nPress {rotateLeft.KeyCode} / {rotateRight.KeyCode} to rotate." );
+            if(toolTipEvent != null)
+                toolTipEvent.Raise( $"Press {interactButton.KeyCode} to grab Press {interactButton.KeyCode} again to let go.\nPress {rotateLeft.KeyCode} / {rotateRight.KeyCode} to rotate." );
         }
         if ( other.CompareTag("Interaction") || other.transform.TryGetComponent<Movable>( out var collided ) )
         {
@@ -108,7 +109,8 @@ public class Movable : Interactible
     {
         if ( other.CompareTag( "Player" ) )
         {
-            toolTipEvent.Raise( "" );
+            if ( toolTipEvent != null )
+                toolTipEvent.Raise( "" );
         }
 
         if ( other.CompareTag( "Interaction" ) || other.transform.TryGetComponent<Movable>( out var collided ) )
