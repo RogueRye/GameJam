@@ -100,7 +100,6 @@ public class Movable : Interactible
             {
                 transform.parent = other.transform;
                 gameObject.tag = "Untagged";
-
             }
         }
     }
@@ -117,7 +116,7 @@ public class Movable : Interactible
             //Debug.Log( "collision" );
             if ( sticky )
             {
-                transform.parent = other.transform;
+                transform.parent = originalParent;
                 gameObject.tag = "Interaction";
 
             }

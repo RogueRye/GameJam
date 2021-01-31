@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\DeathBox.cs" />
     <Compile Include="Assets\SO_Scripts\GameEvent.cs" />
     <Compile Include="Assets\SO_Scripts\IntVariable.cs" />
     <Compile Include="Assets\SO_Scripts\KeyCodeVariable.cs" />

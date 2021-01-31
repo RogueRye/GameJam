@@ -3,6 +3,9 @@
 public class GameManager : GameEventListener
 {
     [SerializeField]
+    private GameEvent deathEvent;
+
+    [SerializeField]
     private Stage[] allStages;
 
     [SerializeField]
@@ -10,6 +13,9 @@ public class GameManager : GameEventListener
 
     [SerializeField]
     private GameEvent wonGameEvent;
+
+    [SerializeField]
+    private GameEvent resetEvent;
 
     [SerializeField]
     private IntVariable stagesCleared;
@@ -25,6 +31,7 @@ public class GameManager : GameEventListener
     {
         //First Stage is Fixed
         selectedStages[ 0 ] = allStages[ 0 ];
+        selectedStages[ 1 ] = allStages[ 1 ];
         currentIndex = 0;
         stagesCleared.Value = 0;
         PrepStage();
@@ -34,6 +41,18 @@ public class GameManager : GameEventListener
     void Update()
     {
 
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        deathEvent.RegisterListener( this );
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        deathEvent.UnregisterListener( this );
     }
 
     private void PrepStage()
@@ -58,6 +77,15 @@ public class GameManager : GameEventListener
             selectedStages[ currentIndex ].gameObject.SetActive( true );
             selectedStages[ currentIndex - 1 ].gameObject.SetActive( false );
             PrepStage();
+        }
+    }
+
+    public override void OnEventRaised( int args )
+    {
+        if(args == deathEvent.Id )
+        {
+            player.transform.position = selectedStages[ currentIndex ].StartPos.position;
+            resetEvent.Raise();
         }
     }
 }
