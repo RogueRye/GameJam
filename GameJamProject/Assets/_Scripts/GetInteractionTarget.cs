@@ -24,7 +24,6 @@ public class GetInteractionTarget : MonoBehaviour
     {
         if ( other.CompareTag( "Interaction" ) )
         {
-            Debug.Log( "hi" );
             var newItem = other.GetComponent<Interactible>();
             if ( !items.Contains( newItem ) )
             {

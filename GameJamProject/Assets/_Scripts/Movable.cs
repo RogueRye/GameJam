@@ -93,6 +93,16 @@ public class Movable : Interactible
         {
             toolTipEvent.Raise( $"Press {interactButton.KeyCode} to grab Press {interactButton.KeyCode} again to let go.\nPress {rotateLeft.KeyCode} / {rotateRight.KeyCode} to rotate." );
         }
+        if ( other.transform.TryGetComponent<Movable>( out var collided ) )
+        {
+            //Debug.Log( "collision" );
+            if ( sticky )
+            {
+                transform.parent = other.transform;
+                gameObject.tag = "Untagged";
+
+            }
+        }
     }
 
     private void OnTriggerExit( Collider other )
@@ -100,6 +110,17 @@ public class Movable : Interactible
         if ( other.CompareTag( "Player" ) )
         {
             toolTipEvent.Raise( "" );
+        }
+
+        if ( other.transform.TryGetComponent<Movable>( out var collided ) )
+        {
+            //Debug.Log( "collision" );
+            if ( sticky )
+            {
+                transform.parent = other.transform;
+                gameObject.tag = "Interaction";
+
+            }
         }
     }
 
